@@ -1,11 +1,13 @@
 const spiderSprite = new Image();
 spiderSprite.src = "spider.png"
+const spiderSpriteMirror = new Image();
+spiderSpriteMirror.src = "spider-mirror.png"
 let actions = ["left", "right"];
 
 class Spider {
   constructor(game) {
     this.width = 32;
-    this.height = 34;
+    this.height = 33;
     this.frameX = 0;
     this.frameY = 1;
     this.speed = (Math.random() * 3) + 2;
@@ -19,21 +21,18 @@ class Spider {
       this.flipped = false;
       this.x = game.DIM_X;
     }
-    let randomSize = Math.random() * 200 + 50;
+    let randomSize = Math.random() * 70 + 40;
     this.sizeX = randomSize
     this.sizeY = randomSize
   }
 
   draw(ctx) {
     if (this.direction === "right") {
-      ctx.scale(-1, 1);
-      ctx.drawImage(spiderSprite, this.width * this.frameX, this.height * this.frameY, this.width, this.height, -this.width-this.x, this.y, this.sizeX, this.sizeY);
-      ctx.scale(-1, 1);
+      ctx.drawImage(spiderSpriteMirror, this.width * (this.frameX+3), this.height * this.frameY, this.width, this.height, this.x, this.y, this.sizeX, this.sizeY);
     }
     else {
       ctx.drawImage(spiderSprite, this.width * this.frameX, this.height * this.frameY, this.width, this.height, this.x, this.y, this.sizeX, this.sizeY);
     }
-    console.log("draw")
   }
 
   move() {
