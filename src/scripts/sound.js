@@ -7,7 +7,9 @@ class Sound {
   }
 
   play() {
-    this.sound.cloneNode(true).play();
+    let sound = this.sound.cloneNode(true)
+    sound.volume = .2
+    sound.play();
   }
 
 }

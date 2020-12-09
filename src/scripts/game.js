@@ -99,6 +99,14 @@ class Game {
     this.moveEnemies();
     this.addEnemies();
     this.removeEnemies();
+    this.win();
+  }
+
+  win() {
+    if (this.slime.sizeX * this.slime.sizeY >= 1000000) {
+      console.log("You Win!")
+    }
+    console.log(this.slime.sizeX * this.slime.sizeY)
   }
 
   removeEnemies() {
