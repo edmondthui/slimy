@@ -5,7 +5,8 @@ class GameView{
   }
   start () {
     // setInterval(this.game.step.bind(this.game), 50);
-    setInterval(this.game.draw.bind(this.game, this.context), 100);
+    setInterval(this.game.draw.bind(this.game, this.context), 50);
+    setInterval(this.game.step.bind(this.game, this.context), 50);
   }
 }
   

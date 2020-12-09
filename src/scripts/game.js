@@ -1,3 +1,4 @@
+const Spider = require("./spider.js")
 const slimeSprite = new Image();
 slimeSprite.src = "slime.png"
 const background = new Image();
@@ -6,14 +7,16 @@ background.src = "dungeon.png"
 
 class Game {
   constructor(DIM_X, DIM_Y){
+    this.numCharacters = 30
+    this.characters = [];
     this.keys = [];
     this.DIM_X = DIM_X,
     this.DIM_Y = DIM_Y
     this.slime =  {
-      x: this.randomPosition()[0],
-      y: this.randomPosition()[1],
       width: 31,
       height: 21,
+      x: this.randomPosition()[0],
+      y: this.randomPosition()[1],
       frameX: 0,
       frameY: 0,
       speed: 5,
@@ -24,7 +27,6 @@ class Game {
     }
 
     window.addEventListener("keydown", (e) => {
-      console.log(e.key)
       this.keys.push(e.key)
     })
     
@@ -32,10 +34,20 @@ class Game {
       this.keys = this.keys.filter((x) => x !== e.key)
       this.slime.moving = false;
     })
+
+    this.addEnemies();
+  }
+
+  addEnemies() {
+    if (this.characters.length < this.numCharacters) {
+      for (let i = this.characters.length ; i < this.numCharacters; i++) {
+        this.characters.push(new Spider(this))
+      }
+    }
   }
   
   randomPosition() {
-    return [(Math.random() * this.DIM_X-20), (Math.random() * this.DIM_Y-20)];
+    return [(Math.random() * this.DIM_X- 30), (Math.random() * this.DIM_Y- 20)];
   }
 
   draw(ctx) {
@@ -51,23 +63,43 @@ class Game {
       ctx.drawImage(slimeSprite, this.slime.width * this.slime.frameX, this.slime.height * this.slime.frameY, this.slime.width, this.slime.height, -this.slime.width-this.slime.x, this.slime.y, this.slime.sizeX, this.slime.sizeY);
       ctx.scale(-1, 1);
     }
+    this.characters.forEach(enemy => enemy.draw(ctx))
   } 
 
+  moveEnemies() {
+    this.characters.forEach(enemy => enemy.move())
+  }
+
+  step() {
+    //this.checkCollisions();
+    this.moveEnemies();
+    this.addEnemies();
+    this.removeEnemies();
+  }
+
+  removeEnemies() {
+    this.characters.forEach((enemy,idx) => {
+      if (enemy.x < 0 || enemy.x > this.DIM_X) {
+        this.characters.splice(idx, 1)
+      }
+    })
+  }
+
   movePlayer() {
-    if (this.keys.includes("w") || this.keys.includes("ArrowUp") && this.slime.y > 0) {
+    if ((this.keys.includes("w") || this.keys.includes("ArrowUp")) && this.slime.y > 0) {
       this.slime.y -= this.slime.speed;
       this.slime.moving = true;
     }
-    if (this.keys.includes("a") || this.keys.includes("ArrowLeft")  && this.slime.x > 0) {
+    if ((this.keys.includes("a") || this.keys.includes("ArrowLeft"))  && this.slime.x > 0) {
       this.slime.x -= this.slime.speed;
       this.slime.moving = true;
       this.slime.flipped= false;
     }
-    if (this.keys.includes("s") || this.keys.includes("ArrowDown")  && this.slime.y < this.DIM_Y - 20) {
+    if ((this.keys.includes("s") || this.keys.includes("ArrowDown"))  && this.slime.y < this.DIM_Y - 20) {
       this.slime.y += this.slime.speed;
       this.slime.moving = true;
     }
-    if (this.keys.includes("d") || this.keys.includes("ArrowRight")  && this.slime.x < this.DIM_X - 20) {
+    if ((this.keys.includes("d") || this.keys.includes("ArrowRight"))  && this.slime.x < this.DIM_X - 20) {
       this.slime.x += this.slime.speed;
       this.slime.moving = true;
       this.slime.flipped = true;
