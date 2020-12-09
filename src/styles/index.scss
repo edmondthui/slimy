@@ -1,0 +1,15 @@
+#game {
+  width: 1000px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid green;
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 60px;
+}
