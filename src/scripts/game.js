@@ -10,8 +10,8 @@ class Game {
     this.DIM_X = DIM_X,
     this.DIM_Y = DIM_Y
     this.slime =  {
-      x: 50,
-      y: 50,
+      x: this.randomPosition()[0],
+      y: this.randomPosition()[1],
       width: 31,
       height: 21,
       frameX: 0,
@@ -24,6 +24,7 @@ class Game {
     }
 
     window.addEventListener("keydown", (e) => {
+      console.log(e.key)
       this.keys.push(e.key)
     })
     
@@ -34,7 +35,7 @@ class Game {
   }
   
   randomPosition() {
-    return [(Math.random() * this.DIM_X), (Math.random() * this.DIM_Y)];
+    return [(Math.random() * this.DIM_X-20), (Math.random() * this.DIM_Y-20)];
   }
 
   draw(ctx) {
@@ -53,20 +54,20 @@ class Game {
   } 
 
   movePlayer() {
-    if (this.keys.includes("w") && this.slime.y > 0) {
+    if (this.keys.includes("w") || this.keys.includes("ArrowUp") && this.slime.y > 0) {
       this.slime.y -= this.slime.speed;
       this.slime.moving = true;
     }
-    if (this.keys.includes("a") && this.slime.x > 0) {
+    if (this.keys.includes("a") || this.keys.includes("ArrowLeft")  && this.slime.x > 0) {
       this.slime.x -= this.slime.speed;
       this.slime.moving = true;
       this.slime.flipped= false;
     }
-    if (this.keys.includes("s") && this.slime.y < this.DIM_Y - 20) {
+    if (this.keys.includes("s") || this.keys.includes("ArrowDown")  && this.slime.y < this.DIM_Y - 20) {
       this.slime.y += this.slime.speed;
       this.slime.moving = true;
     }
-    if (this.keys.includes("d") && this.slime.x < this.DIM_X - 20) {
+    if (this.keys.includes("d") || this.keys.includes("ArrowRight")  && this.slime.x < this.DIM_X - 20) {
       this.slime.x += this.slime.speed;
       this.slime.moving = true;
       this.slime.flipped = true;
