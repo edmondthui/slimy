@@ -1,4 +1,5 @@
 const Spider = require("./spider.js");
+const Sound = require('./sound')
 const slimeSprite = new Image();
 slimeSprite.src = "slime.png";
 const slimeSpriteMirror = new Image();
@@ -8,6 +9,7 @@ background.src = "dungeon.png";
 
 class Game {
   constructor(DIM_X, DIM_Y) {
+    this.eat = new Sound("eat.mp3")
     this.numCharacters = 30;
     this.characters = [];
     this.keys = [];
@@ -121,6 +123,7 @@ class Game {
           this.slime.sizeX += 2;
           this.slime.sizeY += 2;
           this.slime.speed += .05;
+          this.eat.play();
         }
         else {
           location.reload()
@@ -186,6 +189,10 @@ class Game {
         this.slime.frameX = 3;
       }
     }
+  }
+
+  eatSound() {
+
   }
 }
 
