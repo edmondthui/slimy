@@ -6,6 +6,7 @@ let actions = ["left", "right"];
 
 class Spider {
   constructor(game) {
+    this.hostile = false;
     this.width = 32;
     this.height = 33;
     this.frameX = 0;
