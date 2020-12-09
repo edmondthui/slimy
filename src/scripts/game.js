@@ -193,8 +193,11 @@ class Game {
       } else if (this.slime.frameX <= 9 && this.slime.moving) {
         this.slime.frameY = 1;
         this.slime.frameX++;
-      } else {
+      } else if (this.slime.moving) {
         this.slime.frameX = 3;
+      }
+      else {
+        this.slime.frameX = 0;
       }
     }
   }
