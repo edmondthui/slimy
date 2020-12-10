@@ -11,7 +11,7 @@ class Adventurer {
     this.height = 33;
     this.frameX = 0;
     this.frameY = 1;
-    this.speed = (Math.random() * 15) + 10;
+    this.speed = (Math.random() * 10) + 10;
     this.direction = actions[Math.floor(Math.random() * actions.length)]
     this.y = game.randomPosition()[1]
     if (this.direction === "right") {

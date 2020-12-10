@@ -84,7 +84,7 @@ class Game {
     } else {
       ctx.drawImage(
         slimeSpriteMirror,
-        this.slime.width * this.slime.frameX +2,
+        this.slime.width * this.slime.frameX,
         this.slime.height * this.slime.frameY,
         this.slime.width,
         this.slime.height,
@@ -164,7 +164,7 @@ class Game {
           this.characters.splice(idx, 1);
           this.slime.sizeX += 6; //SLIME SIZE AFTER EATING
           this.slime.sizeY += 6; //SLIME SIZE AFTER EATING
-          this.slime.speed += .1;
+          this.slime.speed += .2;
           this.numCharacters += .2;
           this.eat.play();
         }
@@ -187,9 +187,9 @@ class Game {
       (this.keys.includes("a") || this.keys.includes("ArrowLeft")) &&
       this.slime.x > (0 - this.slime.sizeX)
     ) {
-      this.slime.x -= this.slime.speed;
-      this.slime.moving = true;
       this.slime.flipped = false;
+      this.slime.moving = true;
+      this.slime.x -= this.slime.speed;
     }
     if (
       (this.keys.includes("s") || this.keys.includes("ArrowDown")) &&
@@ -202,9 +202,9 @@ class Game {
       (this.keys.includes("d") || this.keys.includes("ArrowRight")) &&
       this.slime.x < this.DIM_X - 20
     ) {
-      this.slime.x += this.slime.speed;
-      this.slime.moving = true;
       this.slime.flipped = true;
+      this.slime.moving = true;
+      this.slime.x += this.slime.speed;
     }
   }
 
@@ -227,11 +227,9 @@ class Game {
       } else if (this.slime.frameX <= 9 && this.slime.moving) {
         this.slime.frameY = 1;
         this.slime.frameX++;
-      } else if (this.slime.moving) {
-        this.slime.frameX = 3;
       }
       else {
-        this.slime.frameX = 0;
+        this.slime.frameX = 4;
       }
     }
   }
