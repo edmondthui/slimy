@@ -1,4 +1,5 @@
 const Spider = require("./spider.js");
+const Adventurer = require("./adventurer.js");
 const Sound = require('./sound')
 const slimeSprite = new Image();
 slimeSprite.src = "slime.png";
@@ -6,11 +7,13 @@ const slimeSpriteMirror = new Image();
 slimeSpriteMirror.src = "slime-mirror.png";
 const background = new Image();
 background.src = "dungeon.png";
+let characters = ["spider", "spider", "spider", "spider", "spider", "spider", "adventurer"]
+
 
 class Game {
   constructor(DIM_X, DIM_Y) {
     this.eat = new Sound("eat.mp3")
-    this.numCharacters = 30;
+    this.numCharacters = 10;
     this.characters = [];
     this.keys = [];
     (this.DIM_X = DIM_X), (this.DIM_Y = DIM_Y);
@@ -45,7 +48,13 @@ class Game {
   addEnemies() {
     if (this.characters.length < this.numCharacters) {
       for (let i = this.characters.length; i < this.numCharacters; i++) {
-        this.characters.push(new Spider(this));
+        let spawn = characters[Math.floor(Math.random() * characters.length)]
+        if (spawn === "spider") {
+          this.characters.push(new Spider(this));
+        }
+        else if (spawn === "adventurer") {
+          this.characters.push(new Adventurer(this));
+        }
       }
     }
   }
@@ -118,7 +127,7 @@ class Game {
         document.body.appendChild(winTitle);
       }
       replayButton.addEventListener("click", () => {
-        this.numCharacters = 30;
+        this.numCharacters = 10;
         this.slime.sizeX = 80;
         this.slime.speed = 5;
         this.slime.sizeY = 40;
@@ -156,9 +165,10 @@ class Game {
           this.slime.sizeX += 6; //SLIME SIZE AFTER EATING
           this.slime.sizeY += 6; //SLIME SIZE AFTER EATING
           this.slime.speed += .1;
+          this.numCharacters += .2;
           this.eat.play();
         }
-        else {
+        else if (enemy.hostile === true ) {
           console.log("You Lose!")
         }
       }
