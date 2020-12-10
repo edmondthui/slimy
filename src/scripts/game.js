@@ -121,7 +121,7 @@ class Game {
       winTitle.innerHTML = "You Win!"
       replayButton.id = "replay"
       replayButton.innerHTML= "Replay"
-      if (document.body.children.length < 7) {
+      if (document.body.children.length < 9) {
         document.body.appendChild(replayButton);
         document.body.appendChild(winScreen);
         document.body.appendChild(winTitle);
