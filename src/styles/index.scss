@@ -113,3 +113,21 @@ body {
   color: #69A7D9;
   transition: 1s;
 }
+
+.social {
+  width: 25px;
+  height: 25px;
+  padding: 0px 10px;
+}
+
+.github {
+  filter: invert(1);
+}
+
+.social-container{
+  display: flex;
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
