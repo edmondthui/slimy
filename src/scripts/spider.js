@@ -11,7 +11,7 @@ class Spider {
     this.height = 33;
     this.frameX = 0;
     this.frameY = 1;
-    this.speed = (Math.random() * 3) + 2;
+    this.speed = (Math.random() * 10) + 1;
     this.direction = actions[Math.floor(Math.random() * actions.length)]
     this.y = game.randomPosition()[1]
     if (this.direction === "right") {
@@ -22,7 +22,7 @@ class Spider {
       this.flipped = false;
       this.x = game.DIM_X;
     }
-    let randomSize = Math.random() * 70 + 40;
+    let randomSize = Math.random() * 100 + 40;
     this.sizeX = randomSize
     this.sizeY = randomSize
   }

@@ -73,7 +73,6 @@ class Game {
         this.slime.sizeY
       );
     } else {
-      // ctx.scale(-1, 1);
       ctx.drawImage(
         slimeSpriteMirror,
         this.slime.width * this.slime.frameX +2,
@@ -85,7 +84,6 @@ class Game {
         this.slime.sizeX,
         this.slime.sizeY
       );
-      // ctx.scale(-1, 1);
     }
 
   }
@@ -104,9 +102,28 @@ class Game {
 
   win() {
     if (this.slime.sizeX * this.slime.sizeY >= 1000000) {
-      console.log("You Win!")
+      this.characters = [];
+      this.numCharacters = 0;
+      let winScreen = document.createElement('div');
+      winScreen.id = "win"
+      let replayButton = document.createElement("button");
+      replayButton.id = "replay"
+      replayButton.innerHTML= "Replay"
+      if (document.body.children.length < 7) {
+        document.body.appendChild(replayButton);
+        document.body.appendChild(winScreen);
+      }
+      replayButton.addEventListener("click", () => {
+        this.numCharacters = 30;
+        this.slime.sizeX = 80;
+        this.slime.speed = 5;
+        this.slime.sizeY = 40;
+        this.slime.x = this.randomPosition()[0],
+        this.slime.y = this.randomPosition()[1],
+        winScreen.parentNode.removeChild(winScreen);
+        replayButton.parentNode.removeChild(replayButton);
+      })
     }
-    console.log(this.slime.sizeX * this.slime.sizeY)
   }
 
   removeEnemies() {
@@ -126,10 +143,10 @@ class Game {
         enemy.y + enemy.sizeY *.50 > this.slime.y
       ) {
 
-        if ((enemy.sizeX * enemy.sizeY * .2) < (this.slime.sizeX * this.slime.sizeY)) {
+        if ((enemy.sizeX * enemy.sizeY * .1) < (this.slime.sizeX * this.slime.sizeY)) {
           this.characters.splice(idx, 1);
-          this.slime.sizeX += 2;
-          this.slime.sizeY += 2;
+          this.slime.sizeX += 2; //SLIME SIZE AFTER EATING
+          this.slime.sizeY += 2; //SLIME SIZE AFTER EATING
           this.slime.speed += .05;
           this.eat.play();
         }
@@ -202,9 +219,6 @@ class Game {
     }
   }
 
-  eatSound() {
-
-  }
 }
 
 module.exports = Game;

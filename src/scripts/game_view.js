@@ -3,11 +3,17 @@ class GameView{
     this.game = game;
     this.context = context
   }
-  start () {
+  start() {
     // setInterval(this.game.step.bind(this.game), 50);
-    setInterval(this.game.draw.bind(this.game, this.context), 50);
-    setInterval(this.game.step.bind(this.game, this.context), 50);
+
+    this.draw = setInterval(this.game.draw.bind(this.game, this.context), 50);
+    this.step = setInterval(this.game.step.bind(this.game, this.context), 50);
   }
+
+  won() {
+    
+  }
+
 }
   
 module.exports = GameView;

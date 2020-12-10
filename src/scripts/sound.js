@@ -12,6 +12,20 @@ class Sound {
     sound.play();
   }
 
+  repeatPlay() {
+    this.sound.volume = .1
+    this.sound.id = "music"
+    this.sound.addEventListener('ended', () => {
+      this.currentTime = 0;
+      this.sound.play();
+    });
+    this.sound.play();
+  }
+
+  pause() {
+    this.sound.pause();
+  }
+
 }
 
 module.exports = Sound

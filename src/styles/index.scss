@@ -1,20 +1,88 @@
+body {
+  background-color: black;
+  font-family: 'Creepster', cursive;
+}
+
 #game {
   width: 1000px;
   height: 400px;
   position: absolute;
   top: 50%;
   left: 50%;
-  box-shadow: 0 0 20px 10px #374470;
   transform: translate(-50%, -50%);
+  background-image: url("../../dungeon.png");
+  background-size: 100% 100%;
 }
 
+#win {
+  width: 1000px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url("https://i.redd.it/yyxhy2cvqlnz.png");
+  z-index: 1;
+  background-size: 100% 100%;
+}
+
+#replay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 30px;
+  background-color: transparent;
+  font-family: 'Creepster', cursive;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+
 .title {
+  pointer-events: none;
+  letter-spacing: 20px; 
   text-align: center;
-  font-family: sans-serif;
   font-size: 60px;
+  margin-bottom: 20px;
   color: white;
 }
 
-body {
-  background-color: black;
+#start {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 30px;
+  background-color: transparent;
+  font-family: 'Creepster', cursive;
+  border-radius: 10px;
+
+}
+
+.music-container {
+  display: flex;
+  justify-content: center;
+}
+
+.music-container h3 {
+  color: white;
+  letter-spacing: 10px; 
+  pointer-events: none;
+}
+
+.music-container button {
+  background-color: transparent;
+  border: 1px solid transparent;
+  outline: none;
+}
+
+#music-button:hover {
+  cursor: pointer;
+}
+
+#replay {
+  cursor: pointer;
 }
