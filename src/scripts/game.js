@@ -19,15 +19,13 @@ class Game {
     (this.DIM_X = DIM_X), (this.DIM_Y = DIM_Y);
     this.slime = {
       width: 31,
-      height: 22,
+      height: 21,
       x: this.randomPosition()[0],
       y: this.randomPosition()[1],
       frameX: 0,
       frameY: 0,
       speed: 5,
       moving: false,
-      // sizeX: 64,
-      // sizeY: 26,
       sizeX: 80,
       sizeY: 40,
       flipped: false,
@@ -157,19 +155,16 @@ class Game {
         enemy.y + (enemy.sizeY *.50) > this.slime.y
       ) {
 
-      // let dist = Math.sqrt((this.slime.x - enemy.x) ** 2 + (this.slime.y + enemy.y ** 2)) // collision using the distance formulat not working
-      // if (((this.slime.sizeY/2 *.5) + (enemy.sizeY/2 *.5)) > dist) {
-
         if ((enemy.sizeX * enemy.sizeY * .1) < (this.slime.sizeX * this.slime.sizeY)) {
           this.characters.splice(idx, 1);
           this.slime.sizeX += 6; //SLIME SIZE AFTER EATING
           this.slime.sizeY += 6; //SLIME SIZE AFTER EATING
           this.slime.speed += .2;
-          this.numCharacters += .2;
+          this.numCharacters += .1;
           this.eat.play();
         }
         else if (enemy.hostile === true ) {
-          console.log("You Lose!")
+          // console.log("You Lose!") // No way to lose right now only for fun
         }
       }
     });
