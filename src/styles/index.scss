@@ -50,6 +50,7 @@ body {
 }
 
 #start {
+  outline: none;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -83,6 +84,10 @@ body {
   cursor: pointer;
 }
 
-#replay {
+#replay:hover {
+  cursor: pointer;
+}
+
+#start:hover {
   cursor: pointer;
 }
