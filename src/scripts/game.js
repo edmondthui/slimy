@@ -58,7 +58,7 @@ class Game {
   }
 
   randomPosition() {
-    return [Math.random() * this.DIM_X - 30, Math.random() * this.DIM_Y - 20];
+    return [Math.random() * (this.DIM_X - 60), Math.random() * (this.DIM_Y-30)];
   }
 
   draw(ctx) {
