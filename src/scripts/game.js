@@ -101,7 +101,7 @@ class Game {
   }
 
   win() {
-    if (this.slime.sizeX * this.slime.sizeY >= 1000000) {
+    if (this.slime.sizeX * this.slime.sizeY >= 750000) {
       this.characters = [];
       this.numCharacters = 0;
       let winScreen = document.createElement('div');
@@ -153,13 +153,12 @@ class Game {
 
         if ((enemy.sizeX * enemy.sizeY * .1) < (this.slime.sizeX * this.slime.sizeY)) {
           this.characters.splice(idx, 1);
-          this.slime.sizeX += 3; //SLIME SIZE AFTER EATING
-          this.slime.sizeY += 3; //SLIME SIZE AFTER EATING
-          this.slime.speed += .05;
+          this.slime.sizeX += 6; //SLIME SIZE AFTER EATING
+          this.slime.sizeY += 6; //SLIME SIZE AFTER EATING
+          this.slime.speed += .1;
           this.eat.play();
         }
         else {
-          location.reload()
           console.log("You Lose!")
         }
       }

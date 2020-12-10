@@ -30,15 +30,4 @@ document.addEventListener("DOMContentLoaded", ()=> {
     }
   })
 
-  // const replayButton = document.getElementById("replay")
-  // const winScreen = document.getElementById("win")
-  // replayButton.addEventListener("click", (e) => {
-  //   e.preventDefault();
-  //   gameView.start();
-  //   startButton.parentNode.removeChild(replayButton);
-  //   winScreen.parentNode.removeChild(winScreen);
-  //   startButton.parentNode.removeChild(startButton);
-  //   music.repeatPlay();
-  // })
-
 })
