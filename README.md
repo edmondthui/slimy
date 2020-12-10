@@ -12,3 +12,6 @@ Slimy is a homage to one of my favourite flash games called Fishy. Now that brow
 * Have hit detection when colliding with enemies
 * Grow your slime when eating other entities
 * Start button, replay button, and win page
+
+## Wireframe
+![Slimy Wireframe](https://i.imgur.com/gruDcmt.png)
