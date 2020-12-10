@@ -221,15 +221,20 @@ class Game {
       }
     }
     else {
+      if (this.slime.frameX < 3 && this.slime.moving) {
+        this.slime.frameX = 3;
+      } 
       if (this.slime.frameX <= 9 && !this.slime.moving) {
         this.slime.frameY = 0;
         this.slime.frameX++;
       } else if (this.slime.frameX <= 9 && this.slime.moving) {
         this.slime.frameY = 1;
         this.slime.frameX++;
+      } else if (this.slime.moving) {
+        this.slime.frameX = 3;
       }
       else {
-        this.slime.frameX = 4;
+        this.slime.frameX = 0;
       }
     }
   }
