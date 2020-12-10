@@ -1,6 +1,6 @@
 # Slimy
 [Live Demo](https://edmondthui.github.io/slimy/)  
-Slimy is an homage to one of my favorite flash games called Fishy. Now that browsers no longer support flash, the next generation will not understand what flash games are. These games were a large part of my childhood which is what inspired me to make this game. Grow your slime by eating smaller enemies and destroy the ecosystem!
+Slimy is a homage to one of my favourite flash games called Fishy. Now that browsers no longer support flash, the next generation will not understand what flash games are. These games were a large part of my childhood which is what inspired me to make this game. Grow your slime by eating smaller enemies and destroy the ecosystem!
 
 ## Technologies Used
 * `JavaScript` 
