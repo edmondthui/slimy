@@ -68,7 +68,7 @@ class Game {
         this.slime.width,
         this.slime.height,
         this.slime.x,
-        this.slime.y,
+        this.slime.y+30,
         this.slime.sizeX,
         this.slime.sizeY
       );
@@ -80,7 +80,7 @@ class Game {
         this.slime.width,
         this.slime.height,
         this.slime.x,
-        this.slime.y,
+        this.slime.y+30,
         this.slime.sizeX,
         this.slime.sizeY
       );
@@ -107,11 +107,15 @@ class Game {
       let winScreen = document.createElement('div');
       winScreen.id = "win"
       let replayButton = document.createElement("button");
+      let winTitle = document.createElement("h1");
+      winTitle.id = "win-title"
+      winTitle.innerHTML = "You Win!"
       replayButton.id = "replay"
       replayButton.innerHTML= "Replay"
       if (document.body.children.length < 7) {
         document.body.appendChild(replayButton);
         document.body.appendChild(winScreen);
+        document.body.appendChild(winTitle);
       }
       replayButton.addEventListener("click", () => {
         this.numCharacters = 30;
@@ -122,6 +126,7 @@ class Game {
         this.slime.y = this.randomPosition()[1],
         winScreen.parentNode.removeChild(winScreen);
         replayButton.parentNode.removeChild(replayButton);
+        winTitle.parentNode.removeChild(winTitle);
       })
     }
   }
@@ -137,16 +142,19 @@ class Game {
   checkCollisions() {
     this.characters.forEach((enemy, idx) => {
       if (
-        enemy.x < this.slime.x + this.slime.sizeX *.50 &&
-        enemy.x + enemy.sizeX *.50 > this.slime.x &&
-        enemy.y < this.slime.y + this.slime.sizeY *.50 &&
-        enemy.y + enemy.sizeY *.50 > this.slime.y
+        enemy.x < this.slime.x + (this.slime.sizeX *.50) &&
+        enemy.x + (enemy.sizeX *.50) > this.slime.x &&
+        enemy.y < this.slime.y + (this.slime.sizeY *.50) &&
+        enemy.y + (enemy.sizeY *.50) > this.slime.y
       ) {
+
+      // let dist = Math.sqrt((this.slime.x - enemy.x) ** 2 + (this.slime.y + enemy.y ** 2)) // collision using the distance formulat not working
+      // if (((this.slime.sizeY/2 *.5) + (enemy.sizeY/2 *.5)) > dist) {
 
         if ((enemy.sizeX * enemy.sizeY * .1) < (this.slime.sizeX * this.slime.sizeY)) {
           this.characters.splice(idx, 1);
-          this.slime.sizeX += 2; //SLIME SIZE AFTER EATING
-          this.slime.sizeY += 2; //SLIME SIZE AFTER EATING
+          this.slime.sizeX += 3; //SLIME SIZE AFTER EATING
+          this.slime.sizeY += 3; //SLIME SIZE AFTER EATING
           this.slime.speed += .05;
           this.eat.play();
         }

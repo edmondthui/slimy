@@ -49,6 +49,16 @@ body {
   color: white;
 }
 
+#win-title {
+  position: absolute;
+  letter-spacing: 10px; 
+  top: 80%;
+  left: 50%;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
 #start {
   outline: none;
   position: absolute;
