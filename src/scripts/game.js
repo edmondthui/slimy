@@ -7,7 +7,7 @@ const slimeSpriteMirror = new Image();
 slimeSpriteMirror.src = "slime-mirror.png";
 const background = new Image();
 background.src = "dungeon.png";
-let characters = ["spider", "spider", "spider", "spider", "spider", "spider", "adventurer"]
+let characters = ["spider", "spider", "spider", "spider", "spider", "spider","spider","spider","spider","spider", "adventurer"]
 
 
 class Game {
