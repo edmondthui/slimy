@@ -124,6 +124,16 @@ body {
   filter: invert(1);
 }
 
+.github:hover {
+  transform: scale(1.25);
+  transition: 0.3s;
+}
+
+.linkedin:hover {
+  transform: scale(1.25);
+  transition: 0.3s;
+}
+
 .social-container{
   display: flex;
   position: absolute;

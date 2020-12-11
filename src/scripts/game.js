@@ -187,7 +187,7 @@ class Game {
           this.eat.play();
         } else {
           if (enemy.hostile === true) {
-            // console.log("You Lose!") // No way to lose right now only for fun
+            
           }
         }
       }
