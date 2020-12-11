@@ -8,9 +8,7 @@ class Sound {
 
   play() {
     let sound = this.sound.cloneNode(true)
-    // sound.volume = .2
     sound.play();
-    // this.sound.play();
   }
 
   repeatPlay() {

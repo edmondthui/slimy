@@ -9,7 +9,6 @@ const background = new Image();
 background.src = "dungeon.png";
 let characters = ["spider", "spider", "spider", "spider", "spider", "spider","spider","spider","spider","spider", "adventurer"]
 
-
 class Game {
   constructor(DIM_X, DIM_Y) {
     this.eat = new Sound("eat.mp3")
@@ -149,13 +148,13 @@ class Game {
   checkCollisions() {
     this.characters.forEach((enemy, idx) => {
       if (
-        enemy.x < this.slime.x + (this.slime.sizeX * .80) &&
-        enemy.x + (enemy.sizeX *.40) > this.slime.x &&
-        enemy.y < this.slime.y + (this.slime.sizeY *.80) &&
-        enemy.y + (enemy.sizeY *.40) > this.slime.y
+        enemy.x < this.slime.x + (this.slime.sizeX * .70) &&
+        enemy.x + (enemy.sizeX *.50) > this.slime.x &&
+        enemy.y < this.slime.y + (this.slime.sizeY *.70) &&
+        enemy.y + (enemy.sizeY *.50) > this.slime.y
       ) {
 
-        if ((enemy.sizeX * enemy.sizeY * .2) < (this.slime.sizeX * this.slime.sizeY)) {
+        if ((enemy.sizeX * enemy.sizeY * .40 ) < (this.slime.sizeX * this.slime.sizeY)) {
           this.characters.splice(idx, 1);
           this.slime.sizeX += 6; //SLIME SIZE AFTER EATING
           this.slime.sizeY += 6; //SLIME SIZE AFTER EATING
@@ -163,8 +162,10 @@ class Game {
           // this.numCharacters += .05;
           this.eat.play();
         }
-        else if (enemy.hostile === true ) {
+        else {
+          if (enemy.hostile === true ) {
           // console.log("You Lose!") // No way to lose right now only for fun
+          }
         }
       }
     });
