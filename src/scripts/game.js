@@ -1,5 +1,6 @@
 const Spider = require("./spider.js");
 const Adventurer = require("./adventurer.js");
+const Skeleton = require("./skeleton")
 const Sound = require('./sound')
 const slimeSprite = new Image();
 slimeSprite.src = "slime.png";
@@ -7,7 +8,7 @@ const slimeSpriteMirror = new Image();
 slimeSpriteMirror.src = "slime-mirror.png";
 const background = new Image();
 background.src = "dungeon.png";
-let characters = ["spider", "spider", "spider", "spider", "spider", "spider","spider","spider","spider","spider", "adventurer"]
+let characters = ["spider", "spider", "spider", "spider", "spider", "spider","spider","spider","spider","spider", "spider", "skeleton", "adventurer"]
 
 class Game {
   constructor(DIM_X, DIM_Y) {
@@ -16,6 +17,7 @@ class Game {
     this.characters = [];
     this.keys = [];
     (this.DIM_X = DIM_X), (this.DIM_Y = DIM_Y);
+    this.eaten = 0;
     this.slime = {
       width: 31,
       height: 20,
@@ -52,6 +54,9 @@ class Game {
         else if (spawn === "adventurer") {
           this.characters.push(new Adventurer(this));
         }
+        else if (spawn === "skeleton") {
+          this.characters.push(new Skeleton(this));
+        }
       }
     }
   }
@@ -65,6 +70,9 @@ class Game {
     ctx.drawImage(background, 0, 0, this.DIM_X, this.DIM_Y);
     this.movePlayer();
     this.handleAnimation();
+    ctx.font = "bold 30px sans-serif"
+    ctx.fillStyle = "#FFFFFF"; 
+    ctx.fillText(`Enemies eaten: ${this.eaten}`, 10, 30);
     this.characters.forEach((enemy) => enemy.draw(ctx));
     if (!this.slime.flipped) {
       ctx.drawImage(
@@ -107,7 +115,7 @@ class Game {
   }
 
   win() {
-    if (this.slime.sizeX * this.slime.sizeY >= 750000) {
+    if (this.eaten >= 100) {
       this.characters = [];
       this.numCharacters = 0;
       let winScreen = document.createElement('div');
@@ -124,6 +132,7 @@ class Game {
         document.body.appendChild(winTitle);
       }
       replayButton.addEventListener("click", () => {
+        this.eaten = 0;
         this.numCharacters = 10;
         this.slime.sizeX = 80;
         this.slime.speed = 5;
@@ -154,11 +163,12 @@ class Game {
         enemy.y + (enemy.sizeY *.50) > this.slime.y
       ) {
 
-        if ((enemy.sizeX * enemy.sizeY * .40 ) < (this.slime.sizeX * this.slime.sizeY)) {
+        if ((enemy.sizeX * enemy.sizeY * .50 ) < (this.slime.sizeX * this.slime.sizeY)) {
           this.characters.splice(idx, 1);
           this.slime.sizeX += 6; //SLIME SIZE AFTER EATING
           this.slime.sizeY += 6; //SLIME SIZE AFTER EATING
           this.slime.speed += .2;
+          this.eaten += 1;
           // this.numCharacters += .05;
           this.eat.play();
         }

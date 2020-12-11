@@ -6,7 +6,7 @@ let actions = ["left", "right"];
 
 class Adventurer {
   constructor(game) {
-    this.hostile = true;
+    this.hostile = false;
     this.width = 32;
     this.height = 33;
     this.frameX = 0;
@@ -22,8 +22,8 @@ class Adventurer {
       this.flipped = false;
       this.x = game.DIM_X;
     }
-    this.sizeX = 150;
-    this.sizeY = 150;
+    this.sizeX = 120;
+    this.sizeY = 120;
   }
 
   draw(ctx) {
