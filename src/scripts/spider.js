@@ -13,7 +13,6 @@ class Spider {
     this.frameY = 1;
     this.speed = (Math.random() * 10) + 1;
     this.direction = actions[Math.floor(Math.random() * actions.length)]
-    this.y = game.randomPosition()[1]
     let randomSize = Math.random() * 120 + 40;
     this.sizeX = randomSize
     this.sizeY = randomSize
@@ -25,6 +24,7 @@ class Spider {
       this.flipped = false;
       this.x = game.DIM_X;
     }
+    this.y = game.randomPosition()[1]
   }
 
   draw(ctx) {

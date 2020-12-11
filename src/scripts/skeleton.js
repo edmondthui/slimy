@@ -10,17 +10,17 @@ class Skeleton {
     this.frameX = 0;
     this.speed = (Math.random() * 5) + 2;
     this.direction = actions[Math.floor(Math.random() * actions.length)]
-    this.y = game.randomPosition()[1]
+    this.sizeX = 150;
+    this.sizeY = 150;
     if (this.direction === "right") {
       this.flipped = true;
-      this.x = 0;
+      this.x = 0 - this.sizeX/2;
     }
     else {
       this.flipped = false;
       this.x = game.DIM_X;
     }
-    this.sizeX = 150;
-    this.sizeY = 150;
+    this.y = game.randomPosition()[1] - this.sizeY
   }
 
   draw(ctx) {

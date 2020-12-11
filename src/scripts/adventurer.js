@@ -13,17 +13,17 @@ class Adventurer {
     this.frameY = 1;
     this.speed = (Math.random() * 10) + 10;
     this.direction = actions[Math.floor(Math.random() * actions.length)]
-    this.y = game.randomPosition()[1]
+    this.sizeX = 120;
+    this.sizeY = 120;
     if (this.direction === "right") {
       this.flipped = true;
-      this.x = 0;
+      this.x = 0 - this.sizeX/2;
     }
     else {
       this.flipped = false;
       this.x = game.DIM_X;
     }
-    this.sizeX = 120;
-    this.sizeY = 120;
+    this.y = game.randomPosition()[1]+ this.sizeY
   }
 
   draw(ctx) {

@@ -16,7 +16,8 @@ class Game {
     this.numCharacters = 10;
     this.characters = [];
     this.keys = [];
-    (this.DIM_X = DIM_X), (this.DIM_Y = DIM_Y);
+    this.DIM_X = DIM_X; 
+    this.DIM_Y = DIM_Y;
     this.eaten = 0;
     this.slime = {
       width: 31,
@@ -62,7 +63,7 @@ class Game {
   }
 
   randomPosition() {
-    return [Math.random() * (this.DIM_X), Math.random() * (this.DIM_Y)];
+    return [Math.random() * (this.DIM_X), Math.random() * (this.DIM_Y - 40)];
   }
 
   draw(ctx) {
