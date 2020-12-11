@@ -13,7 +13,7 @@ class Spider {
     this.frameY = 1;
     this.speed = (Math.random() * 10) + 1;
     this.direction = actions[Math.floor(Math.random() * actions.length)]
-    let randomSize = Math.random() * 120 + 40;
+    let randomSize = Math.random() * 100 + 40;
     this.sizeX = randomSize
     this.sizeY = randomSize
     if (this.direction === "right") {

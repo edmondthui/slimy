@@ -1,22 +1,36 @@
 const Spider = require("./spider.js");
 const Adventurer = require("./adventurer.js");
-const Skeleton = require("./skeleton")
-const Sound = require('./sound')
+const Skeleton = require("./skeleton");
+const Sound = require("./sound");
 const slimeSprite = new Image();
 slimeSprite.src = "slime.png";
 const slimeSpriteMirror = new Image();
 slimeSpriteMirror.src = "slime-mirror.png";
 const background = new Image();
 background.src = "dungeon.png";
-let characters = ["spider", "spider", "spider", "spider", "spider", "spider","spider","spider","spider","spider", "spider", "skeleton", "adventurer"]
+let characters = [
+  "spider",
+  "spider",
+  "spider",
+  "spider",
+  "spider",
+  "spider",
+  "spider",
+  "spider",
+  "spider",
+  "spider",
+  "spider",
+  "skeleton",
+  "adventurer",
+];
 
 class Game {
   constructor(DIM_X, DIM_Y) {
-    this.eat = new Sound("eat.mp3")
+    this.eat = new Sound("eat.mp3");
     this.numCharacters = 10;
     this.characters = [];
     this.keys = [];
-    this.DIM_X = DIM_X; 
+    this.DIM_X = DIM_X;
     this.DIM_Y = DIM_Y;
     this.eaten = 0;
     this.slime = {
@@ -48,14 +62,12 @@ class Game {
   addEnemies() {
     if (this.characters.length < this.numCharacters) {
       for (let i = this.characters.length; i < this.numCharacters; i++) {
-        let spawn = characters[Math.floor(Math.random() * characters.length)]
+        let spawn = characters[Math.floor(Math.random() * characters.length)];
         if (spawn === "spider") {
           this.characters.push(new Spider(this));
-        }
-        else if (spawn === "adventurer") {
+        } else if (spawn === "adventurer") {
           this.characters.push(new Adventurer(this));
-        }
-        else if (spawn === "skeleton") {
+        } else if (spawn === "skeleton") {
           this.characters.push(new Skeleton(this));
         }
       }
@@ -63,7 +75,7 @@ class Game {
   }
 
   randomPosition() {
-    return [Math.random() * (this.DIM_X), Math.random() * (this.DIM_Y - 40)];
+    return [Math.random() * this.DIM_X, Math.random() * (this.DIM_Y - 40)];
   }
 
   draw(ctx) {
@@ -71,8 +83,8 @@ class Game {
     ctx.drawImage(background, 0, 0, this.DIM_X, this.DIM_Y);
     this.movePlayer();
     this.handleAnimation();
-    ctx.font = "bold 30px sans-serif"
-    ctx.fillStyle = "#FFFFFF"; 
+    ctx.font = "bold 30px sans-serif";
+    ctx.fillStyle = "#FFFFFF";
     ctx.fillText(`Enemies eaten: ${this.eaten}`, 10, 30);
     this.characters.forEach((enemy) => enemy.draw(ctx));
     if (!this.slime.flipped) {
@@ -100,7 +112,6 @@ class Game {
         this.slime.sizeY
       );
     }
-
   }
 
   moveEnemies() {
@@ -119,14 +130,14 @@ class Game {
     if (this.eaten >= 100) {
       this.characters = [];
       this.numCharacters = 0;
-      let winScreen = document.createElement('div');
-      winScreen.id = "win"
+      let winScreen = document.createElement("div");
+      winScreen.id = "win";
       let replayButton = document.createElement("button");
       let winTitle = document.createElement("h1");
-      winTitle.id = "win-title"
-      winTitle.innerHTML = "You Win!"
-      replayButton.id = "replay"
-      replayButton.innerHTML= "Replay"
+      winTitle.id = "win-title";
+      winTitle.innerHTML = "You Win!";
+      replayButton.id = "replay";
+      replayButton.innerHTML = "Replay";
       if (document.body.children.length < 9) {
         document.body.appendChild(replayButton);
         document.body.appendChild(winScreen);
@@ -138,12 +149,12 @@ class Game {
         this.slime.sizeX = 80;
         this.slime.speed = 5;
         this.slime.sizeY = 40;
-        this.slime.x = this.randomPosition()[0],
-        this.slime.y = this.randomPosition()[1],
-        winScreen.parentNode.removeChild(winScreen);
+        (this.slime.x = this.randomPosition()[0]),
+          (this.slime.y = this.randomPosition()[1]),
+          winScreen.parentNode.removeChild(winScreen);
         replayButton.parentNode.removeChild(replayButton);
         winTitle.parentNode.removeChild(winTitle);
-      })
+      });
     }
   }
 
@@ -158,24 +169,25 @@ class Game {
   checkCollisions() {
     this.characters.forEach((enemy, idx) => {
       if (
-        enemy.x < this.slime.x + (this.slime.sizeX * .70) &&
-        enemy.x + (enemy.sizeX *.50) > this.slime.x &&
-        enemy.y < this.slime.y + (this.slime.sizeY *.70) &&
-        enemy.y + (enemy.sizeY *.50) > this.slime.y
+        enemy.x < this.slime.x + this.slime.sizeX * 0.7 &&
+        enemy.x + enemy.sizeX * 0.5 > this.slime.x &&
+        enemy.y < this.slime.y + this.slime.sizeY * 0.7 &&
+        enemy.y + enemy.sizeY * 0.5 > this.slime.y
       ) {
-
-        if ((enemy.sizeX * enemy.sizeY * .50 ) < (this.slime.sizeX * this.slime.sizeY)) {
+        if (
+          enemy.sizeX * enemy.sizeY * 0.5 <
+          this.slime.sizeX * this.slime.sizeY
+        ) {
           this.characters.splice(idx, 1);
           this.slime.sizeX += 6; //SLIME SIZE AFTER EATING
           this.slime.sizeY += 6; //SLIME SIZE AFTER EATING
-          this.slime.speed += .2;
+          this.slime.speed += 0.2;
           this.eaten += 1;
           // this.numCharacters += .05;
           this.eat.play();
-        }
-        else {
-          if (enemy.hostile === true ) {
-          // console.log("You Lose!") // No way to lose right now only for fun
+        } else {
+          if (enemy.hostile === true) {
+            // console.log("You Lose!") // No way to lose right now only for fun
           }
         }
       }
@@ -185,14 +197,14 @@ class Game {
   movePlayer() {
     if (
       (this.keys.includes("w") || this.keys.includes("ArrowUp")) &&
-      this.slime.y > (0 - this.slime.sizeY)
+      this.slime.y > 0 - this.slime.sizeY
     ) {
       this.slime.y -= this.slime.speed;
       this.slime.moving = true;
     }
     if (
       (this.keys.includes("a") || this.keys.includes("ArrowLeft")) &&
-      this.slime.x > (0 - this.slime.sizeX)
+      this.slime.x > 0 - this.slime.sizeX
     ) {
       this.slime.flipped = false;
       this.slime.moving = true;
@@ -226,11 +238,10 @@ class Game {
       } else {
         this.slime.frameX = 0;
       }
-    }
-    else {
-      if (this.slime.frameX < 3 && this.slime.moving) {
+    } else {
+      if (this.slime.frameX < 4 && this.slime.moving) {
         this.slime.frameX = 3;
-      } 
+      }
       if (this.slime.frameX <= 9 && !this.slime.moving) {
         this.slime.frameY = 0;
         this.slime.frameX++;
@@ -239,13 +250,11 @@ class Game {
         this.slime.frameX++;
       } else if (this.slime.moving) {
         this.slime.frameX = 3;
-      }
-      else {
+      } else {
         this.slime.frameX = 0;
       }
     }
   }
-
 }
 
 module.exports = Game;
