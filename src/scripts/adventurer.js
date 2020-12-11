@@ -22,8 +22,8 @@ class Adventurer {
       this.flipped = false;
       this.x = game.DIM_X;
     }
-    this.sizeX = 80;
-    this.sizeY = 80;
+    this.sizeX = 85;
+    this.sizeY = 85;
   }
 
   draw(ctx) {

@@ -75,7 +75,7 @@ class Game {
         this.slime.width,
         this.slime.height,
         this.slime.x,
-        this.slime.y+30,
+        this.slime.y,
         this.slime.sizeX,
         this.slime.sizeY
       );
@@ -87,7 +87,7 @@ class Game {
         this.slime.width,
         this.slime.height,
         this.slime.x,
-        this.slime.y+30,
+        this.slime.y,
         this.slime.sizeX,
         this.slime.sizeY
       );
@@ -149,18 +149,18 @@ class Game {
   checkCollisions() {
     this.characters.forEach((enemy, idx) => {
       if (
-        enemy.x < this.slime.x + (this.slime.sizeX *.50) &&
+        enemy.x < this.slime.x + (this.slime.sizeX * .50) &&
         enemy.x + (enemy.sizeX *.50) > this.slime.x &&
-        enemy.y < this.slime.y + (this.slime.sizeY *.50) &&
-        enemy.y + (enemy.sizeY *.50) > this.slime.y
+        enemy.y < this.slime.y + (this.slime.sizeY *.90) &&
+        enemy.y + (enemy.sizeY *.90) > this.slime.y
       ) {
 
         if ((enemy.sizeX * enemy.sizeY * .1) < (this.slime.sizeX * this.slime.sizeY)) {
           this.characters.splice(idx, 1);
-          this.slime.sizeX += 6; //SLIME SIZE AFTER EATING
-          this.slime.sizeY += 6; //SLIME SIZE AFTER EATING
+          this.slime.sizeX += 20; //SLIME SIZE AFTER EATING
+          this.slime.sizeY += 20; //SLIME SIZE AFTER EATING
           this.slime.speed += .2;
-          this.numCharacters += .1;
+          // this.numCharacters += .05;
           this.eat.play();
         }
         else if (enemy.hostile === true ) {
