@@ -157,8 +157,8 @@ class Game {
 
         if ((enemy.sizeX * enemy.sizeY * .1) < (this.slime.sizeX * this.slime.sizeY)) {
           this.characters.splice(idx, 1);
-          this.slime.sizeX += 20; //SLIME SIZE AFTER EATING
-          this.slime.sizeY += 20; //SLIME SIZE AFTER EATING
+          this.slime.sizeX += 6; //SLIME SIZE AFTER EATING
+          this.slime.sizeY += 6; //SLIME SIZE AFTER EATING
           this.slime.speed += .2;
           // this.numCharacters += .05;
           this.eat.play();
