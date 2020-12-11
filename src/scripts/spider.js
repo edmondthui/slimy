@@ -8,23 +8,23 @@ class Spider {
   constructor(game) {
     this.hostile = false;
     this.width = 32;
-    this.height = 33;
+    this.height = 36.75;
     this.frameX = 0;
     this.frameY = 1;
     this.speed = (Math.random() * 10) + 1;
     this.direction = actions[Math.floor(Math.random() * actions.length)]
     this.y = game.randomPosition()[1]
+    let randomSize = Math.random() * 200 + 40;
+    this.sizeX = randomSize
+    this.sizeY = randomSize
     if (this.direction === "right") {
       this.flipped = true;
-      this.x = 0;
+      this.x = 0 - this.sizeX/2;
     }
     else {
       this.flipped = false;
       this.x = game.DIM_X;
     }
-    let randomSize = Math.random() * 100 + 40;
-    this.sizeX = randomSize
-    this.sizeY = randomSize
   }
 
   draw(ctx) {

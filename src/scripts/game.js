@@ -19,7 +19,7 @@ class Game {
     (this.DIM_X = DIM_X), (this.DIM_Y = DIM_Y);
     this.slime = {
       width: 31,
-      height: 21,
+      height: 20,
       x: this.randomPosition()[0],
       y: this.randomPosition()[1],
       frameX: 0,
@@ -58,7 +58,7 @@ class Game {
   }
 
   randomPosition() {
-    return [Math.random() * (this.DIM_X - 60), Math.random() * (this.DIM_Y-30)];
+    return [Math.random() * (this.DIM_X), Math.random() * (this.DIM_Y)];
   }
 
   draw(ctx) {
@@ -149,13 +149,13 @@ class Game {
   checkCollisions() {
     this.characters.forEach((enemy, idx) => {
       if (
-        enemy.x < this.slime.x + (this.slime.sizeX * .50) &&
-        enemy.x + (enemy.sizeX *.50) > this.slime.x &&
-        enemy.y < this.slime.y + (this.slime.sizeY *.90) &&
-        enemy.y + (enemy.sizeY *.90) > this.slime.y
+        enemy.x < this.slime.x + (this.slime.sizeX * .80) &&
+        enemy.x + (enemy.sizeX *.40) > this.slime.x &&
+        enemy.y < this.slime.y + (this.slime.sizeY *.80) &&
+        enemy.y + (enemy.sizeY *.40) > this.slime.y
       ) {
 
-        if ((enemy.sizeX * enemy.sizeY * .1) < (this.slime.sizeX * this.slime.sizeY)) {
+        if ((enemy.sizeX * enemy.sizeY * .2) < (this.slime.sizeX * this.slime.sizeY)) {
           this.characters.splice(idx, 1);
           this.slime.sizeX += 6; //SLIME SIZE AFTER EATING
           this.slime.sizeY += 6; //SLIME SIZE AFTER EATING
