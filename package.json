@@ -1,7 +1,7 @@
 {
-  "name": "Compound",
+  "name": "Slimy",
   "version": "1.0.0",
-  "description": "Edmond Hui's Javascript Project",
+  "description": "Vanilla javascript game with canvas.",
   "main": "index.js",
   "browserslist": [
     "last 1 version",
