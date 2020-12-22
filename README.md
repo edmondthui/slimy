@@ -20,7 +20,7 @@ In this game, you are a slime that grows whenever you touch a smaller enemy. Use
       this.slime.moving = false;
     });
 ```
-This code snippet allows players to move the slime around. The constructor uses an array to keeep track of all keypresses and if the player presses the wasd or arrow keys they will be pushed unto the this.keys array. Then in the movePlayer function this.keys is checked to see if it includes wasd or the arrow keys and if it does will move the slime in the included directions at the slime's speed. This allows the player to move in any direction including diagonally. Once the player lifts the keys the keys are removed from the keys array and the slime will no longer move.
+This code snippet allows players to move the slime around. The constructor uses an array to keep track of all keypresses and listens when the player presses the WASD or arrow keys. The pressed keys will be pushed unto the this.keys array. Then, in the movePlayer function, this.keys is checked to see if it includes WASD or the arrow keys and if it does will move the slime in the included directions at the slime's speed. This allows the player to move in any direction including diagonally. Once the player lifts the keys the keys are removed from the keys array and the slime will no longer move.
 
 ## Key Features / MVP
 * Display board, player, and enemies
