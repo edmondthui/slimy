@@ -1,6 +1,7 @@
 const Spider = require("./spider.js");
 const Adventurer = require("./adventurer.js");
 const Skeleton = require("./skeleton");
+const Cobra = require("./cobra.js")
 const Sound = require("./sound");
 const slimeSprite = new Image();
 slimeSprite.src = "slime.png";
@@ -10,11 +11,11 @@ const background = new Image();
 background.src = "dungeon.png";
 let characters = [
   "spider",
+  "cobra",
   "spider",
+  "cobra",
   "spider",
-  "spider",
-  "spider",
-  "spider",
+  "cobra",
   "spider",
   "spider",
   "spider",
@@ -69,6 +70,8 @@ class Game {
           this.characters.push(new Adventurer(this));
         } else if (spawn === "skeleton") {
           this.characters.push(new Skeleton(this));
+        } else if (spawn === "cobra") {
+          this.characters.push(new Cobra(this));
         }
       }
     }
