@@ -13,8 +13,8 @@ class Cobra {
     this.frameY = 1;
     this.speed = (Math.random() * 10) + 10;
     this.direction = actions[Math.floor(Math.random() * actions.length)]
-    this.sizeX = 80;
-    this.sizeY = 80;
+    this.sizeX = 100;
+    this.sizeY = 100;
     if (this.direction === "right") {
       this.flipped = true;
       this.x = 0 - this.sizeX/2;
