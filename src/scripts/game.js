@@ -1,7 +1,7 @@
 const Spider = require("./spider.js");
 const Adventurer = require("./adventurer.js");
 const Skeleton = require("./skeleton");
-const Cobra = require("./cobra.js")
+const Cobra = require("./cobra.js");
 const Sound = require("./sound");
 const slimeSprite = new Image();
 slimeSprite.src = "slime.png";
@@ -190,7 +190,6 @@ class Game {
           this.eat.play();
         } else {
           if (enemy.hostile === true) {
-            
           }
         }
       }
