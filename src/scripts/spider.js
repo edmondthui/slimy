@@ -11,7 +11,7 @@ class Spider {
     this.height = 36.75;
     this.frameX = 0;
     this.frameY = 1;
-    this.speed = Math.random() * 10 + 1;
+    this.speed = Math.random() * 5 + 1;
     this.direction = actions[Math.floor(Math.random() * actions.length)];
     let randomSize = Math.random() * 100 + 40;
     this.sizeX = randomSize;
